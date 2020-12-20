@@ -31,23 +31,40 @@ public class WeaponZoom : MonoBehaviour
     {
         ManageInput();   
     }
-    
+
+    private void OnDisable()
+    {
+        mainCamera.fieldOfView = baseFieldOfView;
+        mouseLook.lateralSensitivity = mouseSensitivityZoomedOut;
+        mouseLook.verticalSensitivity = mouseSensitivityZoomedOut;
+    }
+
     private void ManageInput()
     {
         if(Input.GetButton("Fire2") )
         {
-            if (mainCamera.fieldOfView > maxZoom)
-            {
-                mainCamera.fieldOfView -= zoomInSpeed;
-                mouseLook.lateralSensitivity = mouseSensitivityZoomedIn;
-                mouseLook.verticalSensitivity = mouseSensitivityZoomedIn;
-            }
+            ZoomIn();
         }
         else if (mainCamera.fieldOfView < baseFieldOfView)
         {
-            mainCamera.fieldOfView += zoomOutSpeed;
-            mouseLook.lateralSensitivity = mouseSensitivityZoomedOut;
-            mouseLook.verticalSensitivity = mouseSensitivityZoomedOut;
+            ZoomOut();
         }
+    }
+
+    private void ZoomIn()
+    {
+        if (mainCamera.fieldOfView > maxZoom)
+        {
+            mainCamera.fieldOfView -= zoomInSpeed;
+            mouseLook.lateralSensitivity = mouseSensitivityZoomedIn;
+            mouseLook.verticalSensitivity = mouseSensitivityZoomedIn;
+        }
+    }
+
+    private void ZoomOut()
+    {
+        mainCamera.fieldOfView += zoomOutSpeed;
+        mouseLook.lateralSensitivity = mouseSensitivityZoomedOut;
+        mouseLook.verticalSensitivity = mouseSensitivityZoomedOut;
     }
 }

@@ -241,9 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1adfa9903b8927468439f632a31cd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 10
   range: 100
-  shotCooldown: 1
+  shotCooldown: 0.2
   typeOfAmmo: 1
   ammoConsumption: 1
   muzzleFlashVFX: {fileID: 1168967291001141361}

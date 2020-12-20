@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Enumerations;
 using UnityEngine;
+using UnityEngine.Events;
+using Utilities;
 
 //Fireball Games * * * PetrZavodny.com
 
@@ -10,6 +12,7 @@ public class Ammo : MonoBehaviour
 {
 #pragma warning disable 649
     [SerializeField] private List<AmmoType> ammoStore;
+    [SerializeField] private CustomUnityEvents.UnityIntEvent OnAmmoAmountChanged;
     
     private Dictionary<TypeOfAmmo, AmmoType> ammoDictionary = new Dictionary<TypeOfAmmo, AmmoType>();
 #pragma warning restore 649
@@ -23,7 +26,17 @@ public class Ammo : MonoBehaviour
     {
         var ammoItem = ammoDictionary[typeOfAmmo];
 
-        if (ammoItem != null) return ammoItem.ReduceAmmo();
+        if (ammoItem != null)
+        {
+            var result = ammoItem.ReduceAmmo(reductionAmount);
+
+            if (result)
+            {
+                OnAmmoAmountChanged?.Invoke(ammoItem.currentAmount);
+            }
+            
+            return result;
+        }
         
         Debug.LogWarning($"Ammo type {typeOfAmmo} not found.");
         return false;
@@ -34,7 +47,17 @@ public class Ammo : MonoBehaviour
     {
         var ammoItem = ammoDictionary[typeOfAmmo];
 
-        if (ammoItem != null) return ammoItem.AddAmmo(addedAmount);
+        if (ammoItem != null)
+        {
+            var result = ammoItem.AddAmmo(addedAmount);
+
+            if (result)
+            {
+                OnAmmoAmountChanged?.Invoke(ammoItem.currentAmount);
+            }
+            
+            return result;
+        }
         
         Debug.LogWarning($"Ammo type {typeOfAmmo} not found.");
         return false;

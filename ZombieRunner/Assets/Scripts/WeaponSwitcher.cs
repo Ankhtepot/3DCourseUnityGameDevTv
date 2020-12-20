@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ECM.Components;
 using UnityEngine;
+using UnityEngine.Events;
 
 //Fireball Games * * * PetrZavodny.com
 
@@ -8,10 +10,18 @@ public class WeaponSwitcher : MonoBehaviour
 {
 #pragma warning disable 649
     [SerializeField] private int currentWeapon = 0;
+    [SerializeField] public UnityEvent OnWeaponSwitched;
+
+    // private Camera mainCamera;
+    // private MouseLook mouseLook;
+    // private float baseFieldOfView;
 #pragma warning restore 649
 
     void Start()
     {
+        // mainCamera = GetComponentInParent<Camera>();
+        // baseFieldOfView = mainCamera.fieldOfView;
+        // mouseLook = GetComponentInParent<MouseLook>();
         SetWeaponActive();
     }
     
@@ -82,6 +92,11 @@ public class WeaponSwitcher : MonoBehaviour
             weaponIndex++;
         }
 
+        // mainCamera.fieldOfView = baseFieldOfView;
+        // mouseLook.lateralSensitivity = 
+        
+        OnWeaponSwitched?.Invoke();
+        
     }
 
     
