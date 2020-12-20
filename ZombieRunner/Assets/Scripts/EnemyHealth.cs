@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enumerations;
 using UnityEngine;
+using UnityEngine.Events;
+using Utilities;
 
 //Fireball Games * * * PetrZavodny.com
 
@@ -9,6 +12,8 @@ public class EnemyHealth : MonoBehaviour
 {
 #pragma warning disable 649
     [SerializeField] private int hitPoints = 100;
+    [SerializeField] private float DeathDelay = 1f;
+    [SerializeField] public UnityEvent OnDeath;
 
     private bool isDead;
     private int originalHealth;
@@ -19,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
         initialize();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, TypeOfDamage typeOfDamage = TypeOfDamage.Physical)
     {
         if (isDead) return;
         
@@ -35,7 +40,10 @@ public class EnemyHealth : MonoBehaviour
     private void ProcessDeath()
     {
         isDead = true;
-        Destroy(gameObject, 1f);
+
+       OnDeath?.Invoke();
+        
+        Destroy(gameObject, DeathDelay);
     }
 
     private void initialize()

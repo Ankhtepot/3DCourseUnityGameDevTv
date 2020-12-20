@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Utilities;
 
 //Fireball Games * * * PetrZavodny.com
 
@@ -27,7 +28,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (PlayerIsDead) return;
+        if (PlayerIsDead || !target) return;
         
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         
@@ -92,11 +93,22 @@ public class EnemyAI : MonoBehaviour
     private void initialize()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
+        target = FindObjectOfType<PlayerHealth>().transform;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
+    }
+
+    public void OnDeath()
+    {
+        target = null;
+        navMeshAgent.SetDestination(transform.position);
+        if (animator.HasParameter("Death"))
+        {
+            animator.SetTrigger("Death");
+        }
     }
 }

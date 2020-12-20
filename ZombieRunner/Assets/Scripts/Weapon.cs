@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Enumerations;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,14 +10,29 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 #pragma warning disable 649
-    [SerializeField] private int damage;
-    [SerializeField] private float range = 100f;
-    [SerializeField] private int bulletCount = 100;
-    [SerializeField] private int maxBullets = 100;
-    [SerializeField] private Camera FPCamera;
-    [SerializeField] private ParticleSystem muzzleFlashVFX;
-    [SerializeField] private GameObject hitEffect;
+    [SerializeField] protected int damage;
+    [SerializeField] protected float range = 100f;
+    [SerializeField] private float shotCooldown = 0.5f;
+    [SerializeField] private TypeOfAmmo typeOfAmmo;
+    [SerializeField] private int ammoConsumption = 1;
+    [SerializeField] protected ParticleSystem muzzleFlashVFX;
+    
+    protected Camera FPCamera;
+    private Ammo ammo;
+    private bool canShoot = true;
 #pragma warning restore 649
+
+    private void Start()
+    {
+        var player = FindObjectOfType<PlayerHealth>();
+        FPCamera = player.GetComponentInChildren<Camera>();
+        ammo = player.GetComponent<Ammo>();
+    }
+
+    private void OnEnable()
+    {
+        canShoot = true;
+    }
 
     void Update()
     {
@@ -24,38 +41,30 @@ public class Weapon : MonoBehaviour
 
     private void ManageInput()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (canShoot && Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
     }
 
+    private IEnumerator CanShootCooldown()
+    {
+        yield return new WaitForSeconds(shotCooldown);
+        canShoot = true;
+    }
+
     private void Shoot()
     {
-        if (bulletCount <= 0) return;
-
-        bulletCount--;
-
-        if (muzzleFlashVFX)
-        {
-            muzzleFlashVFX.Play();
-        }
+        if (!ammo.ReduceAmmo(typeOfAmmo, ammoConsumption)) return;
         
-        RaycastHit hit;
-        if (!Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range)) return;
+        canShoot = false;
+        StartCoroutine(CanShootCooldown());
 
-        CreateHitImpact(hit);
-        
-        var enemyHealth = hit.transform.GetComponent<EnemyHealth>();
-
-        if (!enemyHealth) return;
-        
-        print($"Shoot hit {hit.transform.gameObject.name}");
-        enemyHealth.TakeDamage(damage);
+        ProcessDamageDealing();
     }
 
-    private void CreateHitImpact(RaycastHit hit)
-    {
-        var effect = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-    }
+    protected virtual void ProcessDamageDealing() {}
+    
+
+    
 }

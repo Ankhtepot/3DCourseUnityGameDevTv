@@ -27,6 +27,7 @@ public class DeathHandler : MonoBehaviour
         GameOverCanvas.enabled = true;
         playerController.pause = true;
         Time.timeScale = 0;
+        FindObjectOfType<WeaponSwitcher>().enabled = false;
         var mouseLook = playerController.GetComponent<MouseLook>(); 
         mouseLook.SetCursorLock(false);
         mouseLook.verticalSensitivity = 0;
