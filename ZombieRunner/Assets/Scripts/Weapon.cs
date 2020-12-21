@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Enumerations;
-using UnityEditor;
 using UnityEngine;
 
 //Fireball Games * * * PetrZavodny.com

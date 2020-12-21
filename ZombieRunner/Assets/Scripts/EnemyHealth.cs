@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Enumerations;
+﻿using Enumerations;
 using UnityEngine;
 using UnityEngine.Events;
-using Utilities;
 
 //Fireball Games * * * PetrZavodny.com
 

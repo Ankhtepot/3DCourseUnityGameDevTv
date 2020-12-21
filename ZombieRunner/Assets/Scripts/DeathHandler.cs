@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using ECM.Controllers;
+﻿using ECM.Controllers;
 using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 using MouseLook = ECM.Components.MouseLook;
 
 //Fireball Games * * * PetrZavodny.com

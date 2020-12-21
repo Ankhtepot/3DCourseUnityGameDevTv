@@ -19377,7 +19377,7 @@ MonoBehaviour:
     type: 3}
   destroyWhenDone: 1
   soundPrefabIsChild: 0
-  pitchRandomMultiplier: 1.1
+  pitchRandomMultiplier: 0.18
 --- !u!1 &1558564245870644
 GameObject:
   m_ObjectHideFlags: 0

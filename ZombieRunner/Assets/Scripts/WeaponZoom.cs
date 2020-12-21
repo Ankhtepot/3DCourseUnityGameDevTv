@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ECM.Components;
+﻿using ECM.Components;
 using UnityEngine;
 
 //Fireball Games * * * PetrZavodny.com

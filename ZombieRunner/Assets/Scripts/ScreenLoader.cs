@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ECM.Components;
+﻿using ECM.Components;
 using ECM.Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,12 +9,14 @@ public class ScreenLoader : MonoBehaviour
 {
 #pragma warning disable 649
     [SerializeField] private BaseCharacterController playerController;
+    [SerializeField] private int currentSceneIndex;
 #pragma warning restore 649
 
     private void Start()
     {
         // playerController = FindObjectOfType<BaseCharacterController>();
         // InitializeMouse();
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Time.timeScale = 1;
     }
 
@@ -32,7 +31,7 @@ public class ScreenLoader : MonoBehaviour
 
     public void OnPlayAgainClick()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public void OnQuitClick()

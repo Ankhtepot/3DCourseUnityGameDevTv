@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1422283903095020932}
+  - component: {fileID: 1763243782}
   m_Layer: 0
   m_Name: WeaponPivot
   m_TagString: Untagged
@@ -156,6 +157,22 @@ Transform:
   m_Father: {fileID: 1417696791182971955}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763243782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422283903095020933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95aaa0dbecd5ac642b40640c50715ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: 0
+  OnWeaponSwitched:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1422885752590238653
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +188,8 @@ GameObject:
   - component: {fileID: 1307447768322729491}
   - component: {fileID: 1307447264433308631}
   - component: {fileID: 1308592430102959779}
-  - component: {fileID: 6423037707100064817}
+  - component: {fileID: 1556817291}
+  - component: {fileID: 1556817299}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -323,7 +341,7 @@ MonoBehaviour:
   _backwardSpeed: 3
   _strafeSpeed: 4
   _runSpeedMultiplier: 2
---- !u!114 &6423037707100064817
+--- !u!114 &1556817291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,14 +350,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 1422885752590238653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d978e1c8b9cd61945a4b9f13c4b4e73d, type: 3}
+  m_Script: {fileID: 11500000, guid: 57ffc5310aa28f24b844998ed2170403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  maxZoom: 45
-  zoomInSpeed: 0.2
-  zoomOutSpeed: 1
-  mouseSensitivityZoomedIn: 1
+  ammoStore:
+  - TypeOfAmmo: 0
+    maxAmount: 200
+    currentAmount: 50
+  - TypeOfAmmo: 1
+    maxAmount: 100
+    currentAmount: 50
+  OnAmmoAmountChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1556817299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422885752590238653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428d7bc610835eb468482a2815057a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  MaxHealth: 100
+  IsDead: 0
+  OnPlayerDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: HandleDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1422283904041008561
 PrefabInstance:
   m_ObjectHideFlags: 0
