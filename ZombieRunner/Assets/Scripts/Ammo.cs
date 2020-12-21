@@ -12,7 +12,7 @@ public class Ammo : MonoBehaviour
 {
 #pragma warning disable 649
     [SerializeField] private List<AmmoType> ammoStore;
-    [SerializeField] private CustomUnityEvents.UnityIntEvent OnAmmoAmountChanged;
+    [SerializeField] private UnityIntEvent OnAmmoAmountChanged;
     
     private Dictionary<TypeOfAmmo, AmmoType> ammoDictionary = new Dictionary<TypeOfAmmo, AmmoType>();
 #pragma warning restore 649

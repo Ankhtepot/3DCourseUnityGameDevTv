@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ECM.Components;
 using UnityEngine;
 using UnityEngine.Events;
+using Utilities;
 
 //Fireball Games * * * PetrZavodny.com
 
@@ -10,18 +11,11 @@ public class WeaponSwitcher : MonoBehaviour
 {
 #pragma warning disable 649
     [SerializeField] private int currentWeapon = 0;
-    [SerializeField] public UnityEvent OnWeaponSwitched;
-
-    // private Camera mainCamera;
-    // private MouseLook mouseLook;
-    // private float baseFieldOfView;
+    [SerializeField] public UnityTypeOfAmmoEvent OnWeaponSwitched;
 #pragma warning restore 649
 
     void Start()
     {
-        // mainCamera = GetComponentInParent<Camera>();
-        // baseFieldOfView = mainCamera.fieldOfView;
-        // mouseLook = GetComponentInParent<MouseLook>();
         SetWeaponActive();
     }
     
@@ -88,15 +82,17 @@ public class WeaponSwitcher : MonoBehaviour
         
         foreach (Transform weapon in transform)
         {
-            weapon.gameObject.SetActive(weaponIndex == currentWeapon);
+            if (weaponIndex == currentWeapon)
+            {
+                weapon.gameObject.SetActive(true);
+                OnWeaponSwitched?.Invoke(weapon.GetComponent<Weapon>().GetAmmoType());
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
             weaponIndex++;
         }
-
-        // mainCamera.fieldOfView = baseFieldOfView;
-        // mouseLook.lateralSensitivity = 
-        
-        OnWeaponSwitched?.Invoke();
-        
     }
 
     

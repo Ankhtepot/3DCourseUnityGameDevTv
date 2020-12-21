@@ -63,6 +63,11 @@ public class Weapon : MonoBehaviour
         ProcessDamageDealing();
     }
 
+    public TypeOfAmmo GetAmmoType()
+    {
+        return typeOfAmmo;
+    }
+
     protected virtual void ProcessDamageDealing() {}
     
 

@@ -1,10 +1,10 @@
 ﻿using System;
+using Enumerations;
 using UnityEngine.Events;
 
 namespace Utilities
 {
-    public class CustomUnityEvents
-    {
-        [Serializable] public class UnityIntEvent : UnityEvent<int> {}
-    }
+  [Serializable] public class UnityIntEvent : UnityEvent<int> {}
+  
+  [Serializable] public class UnityTypeOfAmmoEvent : UnityEvent<TypeOfAmmo> {}
 }
