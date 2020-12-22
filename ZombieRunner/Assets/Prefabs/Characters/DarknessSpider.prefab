@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce971b929bae6a4aaedb06704933425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRange: 5
+  chaseRange: 8
   stopDistanceOffset: 0.1
   TurnSpeed: 5
   isProvoked: 0
@@ -99,7 +99,7 @@ PrefabInstance:
     - target: {fileID: 2872082521720472955, guid: 4bce4cac38bc36c41b64b43e529a9e1c,
         type: 3}
       propertyPath: m_Name
-      value: DarknessSpider_PBR
+      value: DarknessSpider
       objectReference: {fileID: 0}
     - target: {fileID: 2872082521720772763, guid: 4bce4cac38bc36c41b64b43e529a9e1c,
         type: 3}
