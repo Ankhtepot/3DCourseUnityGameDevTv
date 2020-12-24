@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace Utilities
 {
-  [Serializable] public class UnityIntEvent : UnityEvent<int> {}
+  [Serializable] public class UnityIntTypeOfAmmoEvent : UnityEvent<int, TypeOfAmmo> {}
   
   [Serializable] public class UnityTypeOfAmmoEvent : UnityEvent<TypeOfAmmo> {}
 }

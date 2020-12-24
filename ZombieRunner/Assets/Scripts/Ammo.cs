@@ -10,7 +10,7 @@ public class Ammo : MonoBehaviour
 {
 #pragma warning disable 649
     [SerializeField] private List<AmmoType> ammoStore;
-    [SerializeField] private UnityIntEvent OnAmmoAmountChanged;
+    [SerializeField] public UnityIntTypeOfAmmoEvent OnAmmoAmountChanged;
     
     private Dictionary<TypeOfAmmo, AmmoType> ammoDictionary = new Dictionary<TypeOfAmmo, AmmoType>();
 #pragma warning restore 649
@@ -30,7 +30,7 @@ public class Ammo : MonoBehaviour
 
             if (result)
             {
-                OnAmmoAmountChanged?.Invoke(ammoItem.currentAmount);
+                OnAmmoAmountChanged?.Invoke(ammoItem.currentAmount, ammoItem.TypeOfAmmo);
             }
             
             return result;
@@ -51,7 +51,7 @@ public class Ammo : MonoBehaviour
 
             if (result)
             {
-                OnAmmoAmountChanged?.Invoke(ammoItem.currentAmount);
+                OnAmmoAmountChanged?.Invoke(ammoItem.currentAmount, ammoItem.TypeOfAmmo);
             }
             
             return result;
@@ -59,7 +59,11 @@ public class Ammo : MonoBehaviour
         
         Debug.LogWarning($"Ammo type {typeOfAmmo} not found.");
         return false;
+    }
 
+    public int GetAmmoAmount(TypeOfAmmo typeOfAmmo)
+    {
+        return ammoDictionary[typeOfAmmo]?.currentAmount ?? -1;
     }
 
     [System.Serializable]

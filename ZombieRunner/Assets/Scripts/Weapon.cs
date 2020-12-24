@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private TypeOfAmmo typeOfAmmo;
     [SerializeField] private int ammoConsumption = 1;
     [SerializeField] protected ParticleSystem muzzleFlashVFX;
+    [SerializeField] protected AudioClip shootSFX;
     
     protected Camera FPCamera;
     private Ammo ammo;
@@ -55,6 +56,7 @@ public class Weapon : MonoBehaviour
         if (!ammo.ReduceAmmo(typeOfAmmo, ammoConsumption)) return;
         
         canShoot = false;
+        AudioSource.PlayClipAtPoint(shootSFX, transform.position, 0.4f);
         StartCoroutine(CanShootCooldown());
 
         ProcessDamageDealing();

@@ -8,6 +8,7 @@ public class AmmoPickup : MonoBehaviour
 #pragma warning disable 649
    [SerializeField] private TypeOfAmmo TypeOfAmmo;
    [SerializeField] private int ammoAmount = 10;
+   [SerializeField] private AudioClip pickupSound;
 #pragma warning restore 649
 
    private void OnTriggerEnter(Collider other)
@@ -18,6 +19,7 @@ public class AmmoPickup : MonoBehaviour
          if (other.GetComponent<Ammo>().AddAmmo(TypeOfAmmo, ammoAmount))
          {
             Debug.Log($"Pickup of type {TypeOfAmmo} added to player inventory.");
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
             Destroy(gameObject);
          }
       }

@@ -27,7 +27,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  damage: 40
+  damage: 20
 --- !u!114 &4209527380125595780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 306882876510475115, guid: 746041d87bbb1934aa613f48eff3b825,
         type: 3}
       propertyPath: m_Name
-      value: Undead
+      value: Undead Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 746041d87bbb1934aa613f48eff3b825, type: 3}

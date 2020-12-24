@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  damage: 40
+  damage: 5
 --- !u!114 &1326707066
 MonoBehaviour:
   m_ObjectHideFlags: 0

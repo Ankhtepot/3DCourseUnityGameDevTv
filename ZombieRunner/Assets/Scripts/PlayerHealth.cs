@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 //Fireball Games * * * PetrZavodny.com
@@ -10,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int MaxHealth = 100;
     public bool IsDead;
     [SerializeField] public UnityEvent OnPlayerDeath;
+    public Action OnPlayerDamaged; 
 #pragma warning restore 649
 
     void Start()
@@ -22,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
         if (IsDead) return;
 
         Health -= damage;
+        
+        OnPlayerDamaged?.Invoke();
 
         if (Health <= 0)
         {

@@ -9,7 +9,7 @@ using UnityEngine;
 public class BaterryPickup : MonoBehaviour
 {
 #pragma warning disable 649
-    [SerializeField] private float angleRestore = 20f;
+    [SerializeField] private float angleRestore = 70f;
     [SerializeField] private float intensityRestore = 5f;
 
     private FlashlightSystem flashlight;
@@ -22,7 +22,7 @@ public class BaterryPickup : MonoBehaviour
             flashlight = other.GetComponentInChildren<FlashlightSystem>();
             Debug.Log($"BaterryPickup triggered");
             flashlight.RestoreLightAngle(angleRestore);
-            flashlight.RestoreLightIntensity(intensityRestore);    
+            flashlight.AddLightIntensity(intensityRestore);    
             Destroy(gameObject);
         }
         

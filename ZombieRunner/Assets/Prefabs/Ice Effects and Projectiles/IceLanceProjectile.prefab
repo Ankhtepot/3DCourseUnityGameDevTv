@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 608879193446117103}
   - component: {fileID: 8257529669958219119}
   - component: {fileID: 8849735458360846948}
-  - component: {fileID: 3735335606171877051}
+  - component: {fileID: 8938277554477635997}
   m_Layer: 0
   m_Name: IceLanceProjectile
   m_TagString: Untagged
@@ -66,7 +66,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17128778, y: 0.16633299, z: 1.0395942}
   m_Center: {x: -0.00536114, y: 0.009671867, z: -0.19523644}
---- !u!114 &3735335606171877051
+--- !u!114 &8938277554477635997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,11 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  typeOfDamage: 1
+  typeOfDamage: 0
   HitEffect: {fileID: 198994245063949058, guid: a17347c42dfc98c4b861a7e41a444d6f,
     type: 3}
   rigidBody: {fileID: 8257529669958219119}
-  lifetime: 0.2
+  lifetime: 2
 --- !u!1 &4583314310060895761
 GameObject:
   m_ObjectHideFlags: 0
